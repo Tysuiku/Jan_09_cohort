@@ -38,3 +38,12 @@ def suisei(word)
 
   str
 end
+
+def power_of_two?(n)
+  i = 1
+  while i < n
+    i * 2
+  end
+
+  i == n
+end
