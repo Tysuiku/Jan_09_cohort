@@ -1,6 +1,12 @@
 class Board
   attr_reader :size
 
+  def self.print_grid(grid)
+    grid.each do |row|
+      puts row.join(" ")
+    end
+  end
+
   def initialize(n)
     @grid = Array.new(n) { Array.new(n, :N) }
     @size = n * n
@@ -10,8 +16,8 @@ class Board
     @grid[pos[0]][pos[1]]
   end
 
-  def []=(pos, value)
-    @grid[pos[0]][pos[1]] = value
+  def []=(pos, val)
+    @grid[pos[0]][pos[1]] = val
   end
 
   def num_ships
@@ -23,7 +29,6 @@ class Board
         end
       end
     end
-
     count
   end
 
@@ -35,14 +40,12 @@ class Board
     else
       self[pos] = :X
     end
-
     false
   end
 
   def place_random_ships
     total_ships = @size * 0.25
-
-    while self.num_ships < total_ships
+    while num_ships < total_ships
       row = rand(0...@grid.length)
       col = rand(0...@grid.length)
       pos = [row, col]
@@ -60,5 +63,13 @@ class Board
         end
       end
     end
+  end
+
+  def cheat
+    self.class.print_grid(@grid)
+  end
+
+  def print
+    self.class.print_grid(hidden_ships_grid)
   end
 end
