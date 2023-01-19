@@ -53,9 +53,7 @@ end
 # sum_array([4, 10, -1, 2]) # => 15
 def sum_array(array)
   return 0 if array.length == 0
-  first = array[0]
-  others = array[1..-1]
-  first + sum_array(others)
+  array[0] + sum_array(array[1..-1])
 end
 
 # Write a method, reverse_string(str), that takes in a string.
@@ -70,6 +68,8 @@ end
 # reverse_string("internet")    # => "tenretni"
 # reverse_string("friends")     # => "sdneirf"
 def reverse_string(str)
+  return "" if str.empty?
+  reverse_string(str[1..-1]) + str[0]
 end
 
 # A 1-dimensional array is also known as a flattened array.
@@ -101,4 +101,11 @@ end
 #     2-dimensional array: [['some data']]
 #     3-dimensional array: [[['some data']]]
 def flatten(data)
+  return [data] if !data.is_a?(Array)
+
+  flattened = []
+  data.each do |el|
+    flattened += flatten(el)
+  end
+  flattened
 end

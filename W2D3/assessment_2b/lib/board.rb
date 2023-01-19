@@ -1,11 +1,13 @@
 class Board
-  def build_stacks(n)
-    Array.new(n) { Array.new }
+  def self.build_stacks(n)
+    Array.new(n) { Array.new() }
   end
+
+  attr_reader :max_height
 
   def initialize(stacks, max_height)
     @max_height = max_height
-    @stacks = Array.new(max_height)
+    @stacks = Array.new(stacks) { Array.new }
   end
 
   # This Board#print method is given for free and does not need to be modified
