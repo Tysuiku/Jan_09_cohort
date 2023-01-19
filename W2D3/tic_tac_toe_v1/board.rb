@@ -66,7 +66,12 @@ class Board
 
   def empty_positions?
     @board.each do |row|
-      return row.any? { |ele| ele == "_" }
+      row.each do |ele|
+        if ele == "_"
+          return true
+        end
+      end
     end
+    false
   end
 end

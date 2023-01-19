@@ -21,7 +21,7 @@ class Game
     while @board.empty_positions?
       @board.print
       @board.place_mark(@current_player.get_position, @current_player.mark_value)
-      if @board.win?(current_player.mark_value)
+      if @board.win?(@current_player.mark_value)
         p "#{@current_player} Won"
         @board.print
         return
